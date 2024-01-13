@@ -2,6 +2,8 @@
 
 import os
 
+id_pattern = re.compile(r'^.\d+$')
+
 class Config(object):
 	API_ID = int(os.environ.get("API_ID", "10261086"))
 	API_HASH = os.environ.get("API_HASH", "9195dc0591fbdb22b5711bcd1f437dab")
@@ -10,7 +12,8 @@ class Config(object):
 	DB_CHANNEL = int(os.environ.get("DB_CHANNEL", "-1002102114753"))
 	SHORTLINK_URL = os.environ.get('SHORTLINK_URL', "tnshort.net")
 	SHORTLINK_API = os.environ.get('SHORTLINK_API', "832ad5ffe369f8dbfcd785735cd76a2b53ee2c46")
-	BOT_OWNER = int(os.environ.get("BOT_OWNER", "1498007933 1426588906"))
+	#BOT_OWNER = int(os.environ.get("BOT_OWNER", "1498007933 1426588906"))
+	BOT_OWNER = [int(bot_owner) if id_pattern.search(bot_owner) else bot_owner for bot_owner in environ.get('BOT_OWNER', '1498007933 1426588906').split()]
 	DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://Abdulxfilestore:Abdulxfilestore@cluster0.qplh8td.mongodb.net/?retryWrites=true&w=majority")
 	UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", "-1002102114753")
 	LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "-1001724477147")
